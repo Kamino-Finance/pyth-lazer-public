@@ -11,13 +11,13 @@ use {
     },
     serde::{Deserialize, Serialize},
     std::time::{Duration, SystemTime},
-    utoipa::ToSchema,
 };
 
 /// Unix timestamp with microsecond resolution.
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize, ToSchema,
+    Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize,
 )]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
 #[repr(transparent)]
 pub struct TimestampUs(u64);
 
@@ -283,9 +283,10 @@ impl TryFrom<TimestampUs> for chrono::DateTime<chrono::Utc> {
 
 /// Non-negative duration with microsecond resolution.
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize, ToSchema,
+    Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize,
 )]
-#[schema(value_type = u64)]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
+#[cfg_attr(feature = "utoipa", schema(value_type = u64))]
 pub struct DurationUs(u64);
 
 impl DurationUs {
@@ -493,8 +494,9 @@ pub mod duration_us_serde_humantime {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, ToSchema)]
-#[schema(as = String, example = "fixed_rate@200ms")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
+#[cfg_attr(feature = "utoipa", schema(as = String, example = "fixed_rate@200ms"))]
 pub struct FixedRate {
     rate: DurationUs,
 }

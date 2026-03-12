@@ -1,4 +1,5 @@
-use std::hash::{DefaultHasher, Hash, Hasher};
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
 
 use anyhow::Result;
 use derive_more::From;
@@ -66,7 +67,7 @@ impl PythLazerWSConnection {
     /// Returns a stream of responses from the server
     pub async fn start(
         &mut self,
-    ) -> Result<impl futures_util::Stream<Item = Result<AnyResponse>> + use<>> {
+    ) -> Result<impl futures_util::Stream<Item = Result<AnyResponse>>> {
         let url = self.endpoint.clone();
         let mut request =
             tokio_tungstenite::tungstenite::client::IntoClientRequest::into_client_request(url)?;

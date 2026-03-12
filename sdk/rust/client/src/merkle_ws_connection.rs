@@ -1,4 +1,5 @@
-use std::hash::{DefaultHasher, Hash, Hasher};
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
 
 use anyhow::Result;
 use futures_util::{StreamExt, TryStreamExt};
@@ -27,7 +28,7 @@ impl PythLazerMerkleWSConnection {
 
     pub async fn start(
         &mut self,
-    ) -> Result<impl futures_util::Stream<Item = Result<SignedMerkleRoot>> + use<>> {
+    ) -> Result<impl futures_util::Stream<Item = Result<SignedMerkleRoot>>> {
         let url = self.endpoint.clone();
         let mut request =
             tokio_tungstenite::tungstenite::client::IntoClientRequest::into_client_request(url)?;

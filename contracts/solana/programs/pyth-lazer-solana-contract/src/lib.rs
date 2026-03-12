@@ -9,6 +9,7 @@ use {
         solana_program::{keccak, pubkey::PUBKEY_BYTES, secp256k1_recover::secp256k1_recover},
         system_program,
     },
+    solana_program::pubkey,
     std::mem::size_of,
 };
 
