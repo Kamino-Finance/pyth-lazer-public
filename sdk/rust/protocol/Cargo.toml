@@ -10,25 +10,28 @@ repository = "https://github.com/pyth-network/pyth-crosschain"
 anyhow = { workspace = true }
 byteorder = { workspace = true }
 chrono = { workspace = true }
-derive_more = { version = "1.0.0", features = ["from", "into"] }
+derive_more = { version = "0.99.20", features = ["from", "into"] }
 hex = { workspace = true }
 humantime = "2.2.0"
 humantime-serde = { workspace = true }
 itertools = "0.13.0"
 mry = { workspace = true, features = ["serde"], optional = true }
-protobuf = { workspace = true }
+protobuf = "=3.1"
 rust_decimal = "1.36.0"
 serde = { workspace = true, features = ["derive"] }
 serde_json = { workspace = true }
 serde_with = { workspace = true, features = ["hex"] }
 strum = { workspace = true }
 thiserror = "2.0.12"
-utoipa = { workspace = true }
+utoipa = { workspace = true, optional = true }
+
+[features]
+default = []
 
 [dev-dependencies]
 bincode = "1.3.3"
-ed25519-dalek = { workspace = true, features = ["rand_core"] }
+# ed25519-dalek = { workspace = true, features = ["rand_core"] }
 libsecp256k1 = "0.7.1"
 bs58 = { workspace = true }
-alloy-primitives = "0.8.19"
+# alloy-primitives = "0.8.19"
 assert_float_eq = "1.1.4"

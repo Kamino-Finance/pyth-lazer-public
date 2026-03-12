@@ -6,7 +6,6 @@ use {
     rust_decimal::{prelude::FromPrimitive, Decimal},
     serde::{Deserialize, Serialize},
     thiserror::Error,
-    utoipa::ToSchema,
 };
 
 #[derive(Debug, Error)]
@@ -20,10 +19,11 @@ pub enum RateError {
 }
 
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize, ToSchema,
+    Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize,
 )]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
 #[repr(transparent)]
-#[schema(value_type = i64)]
+#[cfg_attr(feature = "utoipa", schema(value_type = i64))]
 pub struct Rate(i64);
 
 impl Rate {
