@@ -141,11 +141,18 @@ impl TimestampUs {
     /// Calculates the smallest value greater than or equal to self that is a multiple of `duration`.
     #[inline]
     pub fn next_multiple_of(self, duration: DurationUs) -> anyhow::Result<TimestampUs> {
-        Ok(TimestampUs(
+        if duration.0 == 0 {
+            anyhow::bail!("next_multiple_of: duration is zero");
+        }
+        let remainder = self.0 % duration.0;
+        let result = if remainder == 0 {
             self.0
-                .checked_next_multiple_of(duration.0)
-                .context("checked_next_multiple_of failed")?,
-        ))
+        } else {
+            self.0
+                .checked_add(duration.0 - remainder)
+                .context("next_multiple_of overflowed")?
+        };
+        Ok(TimestampUs(result))
     }
 
     /// Calculates the smallest value less than or equal to self that is a multiple of `duration`.
