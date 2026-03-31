@@ -2,9 +2,7 @@ use {
     crate::Storage,
     anchor_lang::{
         prelude::{borsh, AccountInfo, ProgramError, Pubkey},
-        solana_program::{
-            ed25519_program, program_memory::sol_memcmp, pubkey::PUBKEY_BYTES, sysvar,
-        },
+        solana_program::{program_memory::sol_memcmp, pubkey::PUBKEY_BYTES, sysvar},
         AnchorDeserialize, AnchorSerialize,
     },
     bytemuck::{cast_slice, checked::try_cast_slice, Pod, Zeroable},
@@ -187,7 +185,7 @@ pub fn verify_message(
     )
     .map_err(SignatureVerificationError::LoadInstructionAtFailed)?;
 
-    if ed25519_instruction.program_id != ed25519_program::ID {
+    if ed25519_instruction.program_id != solana_sdk_ids::ed25519_program::ID {
         return Err(SignatureVerificationError::InvalidEd25519InstructionProgramId);
     }
     if ed25519_instruction.data.len() < ED25519_PROGRAM_INPUT_HEADER_LEN {

@@ -42,10 +42,10 @@ jobs:
         id: cache-anchor
         with:
           path: ~/.cargo/bin/anchor
-          key: ${{ runner.os }}-anchor-0.31.1
+          key: ${{ runner.os }}-anchor-0.32.1
       - name: install anchor
         if: steps.cache-anchor.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/coral-xyz/anchor --tag v0.31.1 --locked anchor-cli
+        run: cargo install --git https://github.com/solana-foundation/anchor --tag v0.32.1 --locked anchor-cli
       - name: Build contract
         run: anchor build
       - name: Run anchor tests

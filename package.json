@@ -12,7 +12,7 @@
     "@biomejs/biome": "^2.4.6",
     "@bonfida/spl-name-service": "^3.0.19",
     "@clickhouse/client": "^1.18.2",
-    "@coral-xyz/anchor": "^0.31.1",
+    "@coral-xyz/anchor": "^0.32.0",
     "@cprussin/tsconfig": "^4.0.2",
     "@dotenvx/dotenvx": "^1.54.1",
     "@floating-ui/react": "^0.27.19",

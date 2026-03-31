@@ -4,11 +4,9 @@ mod signature;
 
 use {
     crate::signature::VerifiedMessage,
-    anchor_lang::{
-        prelude::*,
-        solana_program::{keccak, pubkey::PUBKEY_BYTES, secp256k1_recover::secp256k1_recover},
-        system_program,
-    },
+    anchor_lang::{prelude::*, solana_program::pubkey::PUBKEY_BYTES, system_program},
+    solana_keccak_hasher as keccak,
+    solana_secp256k1_recover::secp256k1_recover,
     std::mem::size_of,
 };
 
